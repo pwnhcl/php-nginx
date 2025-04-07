@@ -1,0 +1,17 @@
+2025/04/07 08:02:03 [emerg] 7#7: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:02:04 [emerg] 9#9: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:02:06 [emerg] 11#11: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:02:09 [emerg] 14#14: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:13:48 [emerg] 8#8: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:13:50 [emerg] 10#10: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:13:52 [emerg] 12#12: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:13:55 [emerg] 15#15: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:20:25 [emerg] 7#7: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:20:26 [emerg] 9#9: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:20:28 [emerg] 11#11: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:20:31 [emerg] 14#14: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:27:57 [emerg] 7#7: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:27:58 [emerg] 9#9: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:28:01 [emerg] 11#11: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:28:04 [emerg] 14#14: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
+2025/04/07 08:30:08 [emerg] 108#108: open() "/etc/nginx/snippets/fastcgi-php.conf" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:16
