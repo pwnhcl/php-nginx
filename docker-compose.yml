@@ -1,3 +1,66 @@
+# version: '3.8'
+
+# services:
+#   nginx:
+#     build:
+#       context: ./docker
+#       dockerfile: nginx.Dockerfile
+#     container_name: nginx
+#     ports:
+#       - "8080:80"
+#     volumes:
+#       - ./src:/var/www/html
+#       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#       - ./logs/nginx:/var/log/nginx
+#     depends_on:
+#       - php
+#       - db
+#     networks:
+#       - app-network
+      
+
+#   php:
+#     build:
+#       context: ./docker
+#       dockerfile: php.Dockerfile
+#     container_name: php
+#     volumes:
+#       - ./src:/var/www/html
+#     networks:
+#       - app-network
+#     depends_on:
+#       - db
+#     healthcheck:
+#       test: ["CMD", "php-fpm-healthcheck"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 5  
+
+#   db:
+#     image: mysql:latest
+#     container_name: mysql-db
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: rootpass
+#       MYSQL_DATABASE: mydb
+#       MYSQL_USER: user
+#       MYSQL_PASSWORD: userpass
+#     volumes:
+#       - /home/ubuntu/sql_data:/var/lib/mysql
+#     networks:
+#       - app-network
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 5
+  
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+
 version: '3.8'
 
 services:
@@ -15,9 +78,9 @@ services:
     depends_on:
       - php
       - db
+    restart: always
     networks:
       - app-network
-      
 
   php:
     build:
@@ -26,18 +89,20 @@ services:
     container_name: php
     volumes:
       - ./src:/var/www/html
-    networks:
-      - app-network
+      - ./moodledata:/var/www/moodledata
     depends_on:
       - db
+    restart: always
     healthcheck:
       test: ["CMD", "php-fpm-healthcheck"]
       interval: 30s
       timeout: 10s
-      retries: 5  
+      retries: 5
+    networks:
+      - app-network
 
   db:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql-db
     restart: always
     environment:
@@ -47,15 +112,34 @@ services:
       MYSQL_PASSWORD: userpass
     volumes:
       - /home/ubuntu/sql_data:/var/lib/mysql
-    networks:
-      - app-network
+      - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 30s
       timeout: 10s
       retries: 5
-  
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
 
 networks:
   app-network:
     driver: bridge
+
+# volumes:
+  # Optional named volumes (or you can stick with bind mounts)
+  # sql_data:
+  # moodledata:
