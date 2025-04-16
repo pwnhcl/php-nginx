@@ -106,34 +106,38 @@ services:
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpass
+      MYSQL_ROOT_PASSWORD: iirs@12345
+      MYSQL_DATABASE: isrolms
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: appuserpass
     volumes:
       - /home/ubuntu/sql_data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
+      interval: 60s
+      timeout: 20s
       retries: 5
     networks:
       - app-network
+    ports:
+      - "3306:3306"  
 
   phpmyadmin:
     image: phpmyadmin
     container_name: phpmyadmin
     restart: always
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: rootpass
+      PMA_HOST: mysql-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: iirs@12345
     ports:
       - "8081:80"
     depends_on:
       - db
     networks:
       - app-network
+      
 
 networks:
   app-network:
