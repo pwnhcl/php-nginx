@@ -27,14 +27,17 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./moodledata:/var/www/moodledata
+      - ./docker/phpmyadmin-override.ini:/usr/local/etc/php/conf.d/phpmyadmin-override.ini
+      # - ./docker/php.ini:/usr/local/etc/php/php.ini
+    
     depends_on:
       - db
     restart: always
-    healthcheck:
-      test: ["CMD", "php-fpm-healthcheck"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+    # healthcheck:
+    #   test: ["CMD", "php-fpm-healthcheck"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
     networks:
       - app-network
 
@@ -50,6 +53,7 @@ services:
     volumes:
       - /home/ubuntu/sql_data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
+       
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 60s
@@ -70,6 +74,8 @@ services:
       MYSQL_ROOT_PASSWORD: iirs@12345
     ports:
       - "8081:80"
+    volumes:
+      - ./docker/phpmyadmin-override.ini:/usr/local/etc/php/conf.d/phpmyadmin-override.ini
     depends_on:
       - db
     networks:
